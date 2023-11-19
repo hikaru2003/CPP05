@@ -51,11 +51,12 @@ AForm &AForm::operator=(const AForm &rhs)
 
 std::ostream &operator<<(std::ostream &os, const AForm &rhs)
 {
-	os << "AForm informations" << std::endl;
+	os << "*****form informations*****" << std::endl;
 	os << "name: " << rhs.getName() << std::endl;
 	os << "is signed: " << rhs.getSigned() << std::endl;
 	os << "grade to sign: " << rhs.getGradeToSign() << std::endl;
 	os << "grade to execute: " << rhs.getGradeToExecute() << std::endl;
+	os << "***************************" << std::endl;
 	return (os);
 }
 
@@ -84,16 +85,8 @@ void	AForm::beSigned(const Bureaucrat &bureaucrat)
 {
 	if (bureaucrat.getGrade() <= this->getGradeToSign())
 		this->is_signed_ = true;
-}
-
-void	AForm::signAForm(const Bureaucrat &bureaucrat)
-{
-	if (this->is_signed_ == true && bureaucrat.getGrade() <= this->getGradeToExecute())
-		std::cout << bureaucrat.getName() << " signed " << this->name_ << std::endl;
-	else if (this->is_signed_ == true)
-		std::cout << bureaucrat.getName() << " couldn't sign " << this->name_ << " because grade is too low" << std::endl;
 	else
-		std::cout << bureaucrat.getName() << " couldn't sign " << this->name_ << " because Aform status is false" << std::endl;
+		throw (AForm::GradeTooLowException());
 }
 
 void	AForm::setName(std::string name)
@@ -114,4 +107,13 @@ void	AForm::setGradeToSign(int sign)
 void	AForm::setGradeToExecute(int sign)
 {
 	this->grade_to_execute_ = sign;
+}
+
+void	AForm::execute(Bureaucrat const &executor) const
+{
+	if (this->getSigned() == false)
+		throw (AForm::NotSignedException());
+	else if (executor.getGrade() > this->getGradeToExecute())
+		throw (GradeTooLowException());
+	this->execute();
 }

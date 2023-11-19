@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hikaru <hikaru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hmorisak <hmorisak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:04:30 by hikaru            #+#    #+#             */
-/*   Updated: 2023/11/19 14:36:31 by hikaru           ###   ########.fr       */
+/*   Updated: 2023/11/19 16:32:23 by hmorisak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", false,
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string &target) : AForm("RobotomyRequestForm", false, 72, 45), target_(target)
 {
+	std::srand(std::time(NULL));
 	std::cout << "\33[37mRobotomyRequestForm constructor called\33[m" << std::endl;
 }
 
@@ -49,13 +50,9 @@ std::string	RobotomyRequestForm::getTarget() const
 	return this->target_;
 }
 
-void	RobotomyRequestForm::execute(Bureaucrat &executor) const
+void	RobotomyRequestForm::execute() const
 {
-	if (this->getSigned() == false)
-		throw (AForm::NotSignedException());
-	else if (executor.getGrade() > this->getGradeToExecute())
-		throw (Bureaucrat::GradeTooLowException());
-	else if (rand() % 2)
+	if (rand() % 2)
 		std::cout << this->getTarget() << " has been robotomized successfully" << std::endl;
 	else
 		std::cout << "Robotomy failed" << std::endl;

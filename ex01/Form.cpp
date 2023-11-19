@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hikaru <hikaru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hmorisak <hmorisak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:42:48 by hikaru            #+#    #+#             */
-/*   Updated: 2023/11/19 14:31:38 by hikaru           ###   ########.fr       */
+/*   Updated: 2023/11/19 16:19:44 by hmorisak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,12 @@ Form &Form::operator=(const Form &rhs)
 
 std::ostream &operator<<(std::ostream &os, const Form &rhs)
 {
-	os << "form informations" << std::endl;
+	os << "*****form informations*****" << std::endl;
 	os << "name: " << rhs.getName() << std::endl;
 	os << "is signed: " << rhs.getSigned() << std::endl;
 	os << "grade to sign: " << rhs.getGradeToSign() << std::endl;
 	os << "grade to execute: " << rhs.getGradeToExecute() << std::endl;
+	os << "***************************" << std::endl;
 	return (os);
 }
 
@@ -84,14 +85,6 @@ void	Form::beSigned(const Bureaucrat &bureaucrat)
 {
 	if (bureaucrat.getGrade() <= this->getGradeToSign())
 		this->is_signed_ = true;
-}
-
-void	Form::signForm(const Bureaucrat &bureaucrat)
-{
-	if (this->is_signed_ == true && bureaucrat.getGrade() <= this->getGradeToExecute())
-		std::cout << bureaucrat.getName() << " signed " << this->name_ << std::endl;
-	else if (this->is_signed_ == true)
-		std::cout << bureaucrat.getName() << " couldn't sign " << this->name_ << " because grade is too low" << std::endl;
 	else
-		std::cout << bureaucrat.getName() << " couldn't sign " << this->name_ << " because form status is false" << std::endl;
+		throw (Form::GradeTooLowException());
 }

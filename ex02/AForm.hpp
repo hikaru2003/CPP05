@@ -27,6 +27,7 @@ private:
 	bool				is_signed_;
 	int					grade_to_sign_;
 	int					grade_to_execute_;
+	virtual void		execute() const = 0;
 	
 public:
 	AForm();
@@ -45,8 +46,7 @@ public:
 	void		setGradeToExecute(int sign);
 	
 	void	beSigned(const Bureaucrat &bureaucrat);
-	void			signAForm(const Bureaucrat &bureaucrat);
-	virtual void	execute(Bureaucrat &executor) const = 0;
+	virtual void	execute(Bureaucrat const &executor) const;
 
 	// exception
 	class GradeTooHighException : public std::exception

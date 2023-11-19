@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hikaru <hikaru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hmorisak <hmorisak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:56:27 by hikaru            #+#    #+#             */
-/*   Updated: 2023/11/19 14:36:27 by hikaru           ###   ########.fr       */
+/*   Updated: 2023/11/19 16:32:34 by hmorisak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,7 @@ std::string	PresidentialPardonForm::getTarget() const
 {
 	return this->target_;
 }
-void	PresidentialPardonForm::execute(Bureaucrat &executor) const
+void	PresidentialPardonForm::execute() const
 {
-	if (this->getSigned() == false)
-		throw (AForm::NotSignedException());
-	else if (executor.getGrade() > this->getGradeToExecute())
-		throw (Bureaucrat::GradeTooLowException());
-	else if (this->getSigned() && executor.getGrade() <= this->getGradeToExecute())
-		std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+	std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }

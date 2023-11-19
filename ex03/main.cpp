@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hikaru <hikaru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hmorisak <hmorisak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 16:10:39 by hikaru            #+#    #+#             */
-/*   Updated: 2023/11/19 14:45:36 by hikaru           ###   ########.fr       */
+/*   Updated: 2023/11/19 17:00:22 by hmorisak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int	main(void)
 		
 		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
 		std::cout << hikaru << std::endl;
-		rrf->beSigned(hikaru);
-		rrf->signAForm(hikaru);
+		hikaru.signForm(*rrf);
 		hikaru.executeForm(*rrf);
 		delete rrf;
 	}

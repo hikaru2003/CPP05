@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hikaru <hikaru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hmorisak <hmorisak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:02:36 by hikaru            #+#    #+#             */
-/*   Updated: 2023/11/14 15:54:38 by hikaru           ###   ########.fr       */
+/*   Updated: 2023/11/19 16:32:14 by hmorisak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ public:
 	~RobotomyRequestForm();
 
 	std::string	getTarget() const;
-	void		execute(Bureaucrat &executor) const;
+	void		execute() const;
 };

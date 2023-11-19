@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hikaru <hikaru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hmorisak <hmorisak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 16:10:45 by hikaru            #+#    #+#             */
-/*   Updated: 2023/11/19 14:11:41 by hikaru           ###   ########.fr       */
+/*   Updated: 2023/11/19 16:42:35 by hmorisak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ public:
 	int			getGrade() const;
 	void		increment_grade();
 	void		decrement_grade();
+	void		signForm(AForm &form);
 	void		executeForm(AForm const & form);
 
 	// exception function

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hikaru <hikaru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hmorisak <hmorisak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:06:18 by hikaru            #+#    #+#             */
-/*   Updated: 2023/11/19 14:35:33 by hikaru           ###   ########.fr       */
+/*   Updated: 2023/11/19 16:31:54 by hmorisak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,23 @@ std::string	ShrubberyCreationForm::getTarget() const
 	return this->target_;
 }
 
-void	ShrubberyCreationForm::execute(Bureaucrat &executor) const
+void	ShrubberyCreationForm::execute() const
 {
-	if (this->getSigned() == false)
-		throw (AForm::NotSignedException());
-	else if (executor.getGrade() > this->getGradeToExecute())
-		throw (Bureaucrat::GradeTooLowException());
-	else if (this->getSigned() && executor.getGrade() <= this->getGradeToExecute())
+	std::ofstream ofs(this->getTarget() + "_shrubbery");
+	if (!ofs)
 	{
-		std::ofstream ofs(this->getTarget() + "_shrubbery");
-		if (!ofs)
-		{
-			std::cerr << "cannot create file" << std::endl;
-			return ;
-		}
-		ofs << "	   _-_" << std::endl;
-		ofs << "    /~~   ~~\\" << std::endl;
-		ofs << " /~~         ~~\\" << std::endl;
-		ofs << "{               }" << std::endl;
-		ofs << " \\  _-     -_  /" << std::endl;
-		ofs << "   ~  \\\\ //  ~" << std::endl;
-		ofs << "_- -   | | _- _" << std::endl;
-		ofs << "  _ -  | |   -_" << std::endl;
-		ofs << "//////// \\\\\\\\\\\\\\\\" << std::endl;
-		ofs.close();
-		std::cout << this->getTarget() << "_shrubbery created" << std::endl;
+		std::cerr << "cannot create file" << std::endl;
+		return ;
 	}
+	ofs << "	   _-_" << std::endl;
+	ofs << "    /~~   ~~\\" << std::endl;
+	ofs << " /~~         ~~\\" << std::endl;
+	ofs << "{               }" << std::endl;
+	ofs << " \\  _-     -_  /" << std::endl;
+	ofs << "   ~  \\\\ //  ~" << std::endl;
+	ofs << "_- -   | | _- _" << std::endl;
+	ofs << "  _ -  | |   -_" << std::endl;
+	ofs << "//////// \\\\\\\\\\\\\\\\" << std::endl;
+	ofs.close();
+	std::cout << this->getTarget() << "_shrubbery created" << std::endl;
 }
